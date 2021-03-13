@@ -16,26 +16,26 @@ num_sensors = 5;
 M = 8;
 
 % lidar noise covariance
-R_lidar = 0.01 * eye(M);
+R_lidar = 0.1 * eye(M);
 
 % map points from lidar
 map_points = [];
 
 % initial state covariance matrix
 P_rob = 0.1  * eye(3);
-P_range = 0.1 * eye(3 * 4);
-P_bear = 0.1 * eye(3);
+P_range = 0.05 * eye(3 * 4);
+P_bear = 0.05 * eye(3);
 P = blkdiag(P_rob, P_range, P_bear);
 
 % process noise covariance matrix
-Q_rob = 0.07 * eye(3);
+Q_rob = 0.01 * eye(3);
 Q_range = zeros(3 * 4);
 Q_bear = zeros(3);
 Q = blkdiag(Q_rob, Q_range, Q_bear);
 
 % observation noise covariance matrix
-R_range = 0.01 * eye(4);
-R_bear = 0.01;
+R_range = 0.1 * eye(4);
+R_bear = 0.1;
 R = blkdiag(R_range, R_bear);
 
 % obstacles

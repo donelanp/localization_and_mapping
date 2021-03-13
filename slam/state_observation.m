@@ -51,11 +51,11 @@ H = [H; H_gps];
 % big cylinder object
 p = x_hist(16:18,:);
 delta = p(1:2) - pos_rob(1:2);
-x = delta(1)^2 + delta(2)^2;
-z_bearing = atan2(delta(2), delta(1)) - x_hist(3,end);
-H_bearing = zeros(1, numel(x_hist(:,1)));
-H_bearing(1:3) = [-delta(2) / x, delta(1) / x, -1];
-H_bearing(16:18) = [delta(2) / x, -delta(1) / x, 0];
+a = delta(1)^2 + delta(2)^2;
+z_bearing = atan2(delta(2), delta(1)) - x(3);
+H_bearing = zeros(1, numel(x));
+H_bearing(1:3) = [delta(2) / a, -delta(1) / a, -1];
+H_bearing(16:18) = [-delta(2) / a, delta(1) / a, 0];
 z = [z; z_bearing];
 H = [H; H_bearing];
 used_sensors(5) = 1;
